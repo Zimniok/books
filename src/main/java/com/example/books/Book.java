@@ -5,11 +5,13 @@ public class Book {
     private String title;
     private int authorId;
     int pages;
+    private int availableCopies;
 
-    public Book(int id, String title, int pages) {
+    public Book(int id, String title, int pages, int availableCopies) {
         this.id = id;
         this.title = title;
         this.pages = pages;
+        this.availableCopies = availableCopies;
     }
 
     public int getId() {
@@ -38,5 +40,13 @@ public class Book {
 
     public void setPages(int pages) {
         this.pages = pages;
+    }
+
+    public int getAvailableCopies() {
+        return availableCopies;
+    }
+
+    public void setAvailableCopies(int availableCopies) {
+        this.availableCopies = availableCopies;
     }
 }

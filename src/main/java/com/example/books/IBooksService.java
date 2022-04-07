@@ -8,4 +8,6 @@ public interface IBooksService {
     public abstract Boolean addBook(Book newBook);
     public abstract Boolean updateBook(Book updatedBook);
     public abstract Boolean deleteBook(int id);
+    public abstract Boolean decreaseAvailableCopies(int id);
+    public abstract Boolean increaseAvailableCopies(int id);
 }

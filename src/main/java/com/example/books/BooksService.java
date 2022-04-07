@@ -11,9 +11,9 @@ public class BooksService implements IBooksService {
     private static List<Book> booksRepo = new ArrayList<>();
 
     static {
-        booksRepo.add(new Book(1, "Potop", 936));
-        booksRepo.add(new Book(2,"Wesele", 150));
-        booksRepo.add(new Book(3,"Dziady", 292));
+        booksRepo.add(new Book(1, "Potop", 936, 3));
+        booksRepo.add(new Book(2,"Wesele", 150, 3));
+        booksRepo.add(new Book(3,"Dziady", 292, 3));
     }
 
     @Override
@@ -57,6 +57,26 @@ public class BooksService implements IBooksService {
             return false;
         }
         booksRepo.remove(bookToDelete);
+        return true;
+    }
+
+    @Override
+    public Boolean decreaseAvailableCopies(int id) {
+        Book b = getBook(id);
+        if (b == null)
+            return false;
+        if (b.getAvailableCopies() == 0)
+            return false;
+        b.setAvailableCopies(b.getAvailableCopies()-1);
+        return true;
+    }
+
+    @Override
+    public Boolean increaseAvailableCopies(int id) {
+        Book b = getBook(id);
+        if (b == null)
+            return false;
+        b.setAvailableCopies(b.getAvailableCopies()+1);
         return true;
     }
 }
