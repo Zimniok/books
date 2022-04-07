@@ -23,16 +23,26 @@ public class BookAuthorService implements IBookAuthorService {
 
     @Override
     public BookAuthor[] getAuthorsOfBook(int bookID) {
-        return (BookAuthor[]) bookAuthorRepo.stream()
+        Object result[] = bookAuthorRepo.stream()
                 .filter(ba -> ba.getBookID() == bookID)
                 .toArray();
+        BookAuthor bookAuthor[] = new BookAuthor[result.length];
+        for (int i = 0; i < result.length; i++) {
+            bookAuthor[i] = (BookAuthor) result[i];
+        }
+        return bookAuthor;
     }
 
     @Override
     public BookAuthor[] getBooksByAuthor(int authorID) {
-        return (BookAuthor[]) bookAuthorRepo.stream()
+        Object result[] = bookAuthorRepo.stream()
                 .filter(ba -> ba.getAuthorID() == authorID)
                 .toArray();
+        BookAuthor bookAuthors[] = new BookAuthor[result.length];
+        for (int i = 0; i < result.length; i++) {
+            bookAuthors[i] = (BookAuthor) result[i];
+        }
+        return bookAuthors;
     }
 
     @Override

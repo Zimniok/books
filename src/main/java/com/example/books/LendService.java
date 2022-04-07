@@ -32,49 +32,64 @@ public class LendService implements ILendService {
 
     @Override
     public Lend[] getLendsOfClient(int clientId) {
-        return (Lend[]) lendsRepo.stream()
+        Object result[] = lendsRepo.stream()
                 .filter(l -> l.getClientId() == clientId)
                 .toArray();
+        Lend lends[] = new Lend[result.length];
+        for (int i = 0; i < result.length; i++) {
+            lends[i] = (Lend) result[i];
+        }
+        return lends;
     }
 
     @Override
     public Lend[] getAllLendsOfBook(int bookId) {
-        return (Lend[]) lendsRepo.stream()
+        Object lends[] = lendsRepo.stream()
                 .filter(l -> l.getBookId() == bookId)
                 .toArray();
+        Lend result[] = new Lend[lends.length];
+        for (int i = 0; i < lends.length; i++) {
+            result[i] = (Lend) lends[i];
+        }
+        return result;
     }
 
     @Override
     public Client[] getClientsWithBook(int bookId) {
-        Lend[] lends = (Lend[]) lendsRepo.stream()
+        Object[] lends =lendsRepo.stream()
                 .filter(l -> l.getBookId() == bookId && l.getReturnDate() == null)
                 .toArray();
 
-        ArrayList<Client> clients = new ArrayList<>();
+        Client[] clients = new Client[lends.length];
         for (int i = 0; i < lends.length; i++) {
-            clients.add(clientService.getClient(lends[i].getClientId()));
+            clients[i] = (clientService.getClient(((Lend) lends[i]).getClientId()));
         }
-        return (Client[]) clients.toArray();
+        return clients;
     }
 
     @Override
     public Lend[] getNotReturned() {
-        return (Lend[]) lendsRepo.stream()
+        Object result[] = lendsRepo.stream()
                 .filter(l -> l.getReturnDate() == null)
                 .toArray();
+        Lend lends[] = new Lend[result.length];
+        for (int i = 0; i < result.length; i++) {
+            lends[i] = (Lend) result[i];
+        }
+        return lends;
     }
 
     @Override
     public Book[] getBooksNotReturnedByClient(int clientId) {
-        Lend[] lends = (Lend[]) lendsRepo.stream()
+        Object[] lends = lendsRepo.stream()
                 .filter(l -> l.getClientId() == clientId && l.getReturnDate() == null)
                 .toArray();
 
-        ArrayList<Book> books = new ArrayList<>();
+        Book books[] = new Book[lends.length];
         for (int i = 0; i < lends.length; i++) {
-            books.add(booksService.getBook(lends[i].getBookId()));
+            books[i] = (booksService.getBook(((Lend) lends[i]).getBookId()));
         }
-        return (Book[]) books.toArray();
+        return books;
     }
 
     @Override
