@@ -7,11 +7,12 @@ public class Book {
     int pages;
     private int availableCopies;
 
-    public Book(int id, String title, int pages, int availableCopies) {
+    public Book(int id, String title, int pages, int availableCopies, int authorId) {
         this.id = id;
         this.title = title;
         this.pages = pages;
         this.availableCopies = availableCopies;
+        this.authorId = authorId;
     }
 
     public int getId() {

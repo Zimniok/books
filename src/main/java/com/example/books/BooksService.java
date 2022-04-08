@@ -11,9 +11,9 @@ public class BooksService implements IBooksService {
     private static List<Book> booksRepo = new ArrayList<>();
 
     static {
-        booksRepo.add(new Book(1, "Potop", 936, 3));
-        booksRepo.add(new Book(2,"Wesele", 150, 3));
-        booksRepo.add(new Book(3,"Dziady", 292, 3));
+        booksRepo.add(new Book(1, "Potop", 936, 3, 1));
+        booksRepo.add(new Book(2,"Wesele", 150, 3, 2));
+        booksRepo.add(new Book(3,"Dziady", 292, 3, 3));
     }
 
     @Override
