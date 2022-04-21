@@ -10,4 +10,5 @@ public interface IBooksService {
     public abstract Boolean deleteBook(int id);
     public abstract Boolean decreaseAvailableCopies(int id);
     public abstract Boolean increaseAvailableCopies(int id);
+    public abstract Collection<BookWithAuthor> getBooksWithAuthors();
 }

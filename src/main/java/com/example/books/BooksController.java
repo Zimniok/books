@@ -41,4 +41,9 @@ public class BooksController {
             return new ResponseEntity<>(HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @RequestMapping(value = "/get/books_with_authors", method = RequestMethod.GET)
+    public ResponseEntity<Object> getBooksWithAuthors(){
+        return new ResponseEntity<>(booksService.getBooksWithAuthors(), HttpStatus.OK);
+    }
 }

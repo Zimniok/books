@@ -1,5 +1,6 @@
 package com.example.books;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,6 +9,9 @@ import java.util.List;
 
 @Service
 public class BooksService implements IBooksService {
+    @Autowired
+    IAuthorServices authorServices;
+
     private static List<Book> booksRepo = new ArrayList<>();
 
     static {
@@ -19,6 +23,15 @@ public class BooksService implements IBooksService {
     @Override
     public Collection<Book> getBooks() {
         return booksRepo;
+    }
+
+    @Override
+    public Collection<BookWithAuthor> getBooksWithAuthors() {
+        List<BookWithAuthor> booksWithAuthors = new ArrayList<>();
+        for(int i = 0; i < booksRepo.size(); i++){
+            booksWithAuthors.add(new BookWithAuthor(booksRepo.get(i), authorServices.getAuthor(booksRepo.get(i).getAuthorId())));
+        }
+        return booksWithAuthors;
     }
 
     @Override
