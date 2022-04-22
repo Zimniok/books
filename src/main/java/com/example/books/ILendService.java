@@ -11,4 +11,5 @@ public interface ILendService {
     public abstract Book[] getBooksNotReturnedByClient(int clientId);
     public abstract boolean lendBookToClient(int bookId, int clientId);
     public abstract boolean returnBook(int bookId, int clientId);
+    public abstract Collection<LendData> getLendData();
 }

@@ -115,4 +115,13 @@ public class LendService implements ILendService {
         }
         return false;
     }
+
+    @Override
+    public Collection<LendData> getLendData() {
+        Collection<LendData> lendData = new ArrayList<>();
+        for(int i =0; i < lendsRepo.size(); i++) {
+            lendData.add(new LendData(booksService.getBook(lendsRepo.get(i).getBookId()), clientService.getClient(lendsRepo.get(i).getClientId()), lendsRepo.get(i).getLendDate(), lendsRepo.get(i).getReturnDate()));
+        }
+        return lendData;
+    }
 }

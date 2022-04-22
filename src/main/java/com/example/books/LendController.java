@@ -54,4 +54,9 @@ public class LendController {
             return new ResponseEntity<>(HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @RequestMapping(value = "/get/lendData", method = RequestMethod.GET)
+    public ResponseEntity<Object> getLendData(){
+        return new ResponseEntity<>(lendService.getLendData(), HttpStatus.OK);
+    }
 }
